@@ -5,3 +5,4 @@ Run the following commands:
 1. docker-compose  build
 2. docker-compose up -d
 Connect With browser and upload image/pdf.
+

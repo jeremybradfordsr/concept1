@@ -8,7 +8,7 @@ services:
         - MYSQL_ROOT_PASSWORD="secret"
   web:
     image: apache
-    build: ./
+    build: ./apache/
     depends_on:
        - db
     container_name: apache_web
@@ -17,3 +17,13 @@ services:
     restart: always
     ports:
       - "80:80"
+  solr:
+    image: solr
+    build: ./solr/
+    volumes:
+      - ./UNIXROOT/a:/opt/solr/a
+      - ./UNIXROOT/var/www/html/stash/:/stash
+    restart: always
+    ports:
+      - "8983:8983"
+      - "8080:8080"

@@ -3,10 +3,10 @@ import os
 import time
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
-ocrAPICall ='python ocrSpaceAPICall.py % event.src_path api_key=3c37bc8dde88957'
+#ocrAPICall =('python3 ocrSpaceAPICall.py' + event.src_path + 'api_key=3c37bc8dde88957')
 
 class Watcher:
-    DIRECTORY_TO_WATCH = "/var/www/html/"
+    DIRECTORY_TO_WATCH = "/var/www/html/uploads/"
 
     def __init__(self):
         self.observer = Observer()
@@ -20,7 +20,7 @@ class Watcher:
                 time.sleep(5)
         except:
             self.observer.stop()
-            print "Error"
+            print ("Error")
 
         self.observer.join()
 
@@ -34,11 +34,11 @@ class Handler(FileSystemEventHandler):
 
         elif event.event_type == 'created':
             # Take any action here when a file is first created.
-            print "Received created event - %s." % event.src_path
-            os.system(ocrAPICall)
+            print ("Received created event - %s." % event.src_path)
+            os.system("/usr/bin/python3 /var/www/html/ocrSpaceAPICall.py %s" % event.src_path)
         elif event.event_type == 'modified':
             # Taken any action here when a file is modified.
-            print "Received modified event - %s." % event.src_path
+            print ("Received modified event - %s." % event.src_path)
 
 
 if __name__ == '__main__':

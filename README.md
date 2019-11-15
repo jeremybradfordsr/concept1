@@ -1,5 +1,5 @@
-# concept1
-OCR character recognition and storage with web submission. Docker infrastructure - Apache, mysql
+# rfaxx
+OCR character recognition and storage with web submission. Docker infrastructure - Apache, OCR.space submission, elastic search frontend
 ## Usage
 Run the following commands: 
 1. docker-compose  build

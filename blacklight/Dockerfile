@@ -20,4 +20,7 @@ WORKDIR /home/blacklight
 RUN rails new blacklight -m https://raw.github.com/projectblacklight/blacklight/master/template.demo.rb
 USER blacklight
 #Run solr and blacklight
+USER root
+RUN chmod 777 /tmp 
+USER blacklight
 CMD bash blacklight_wrapper.sh

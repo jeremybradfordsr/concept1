@@ -1,4 +1,4 @@
-# rfaxx
+# RFaxx
 OCR character photo recognition and storage with web submission. Docker infrastructure - Apache, OCR.space submission, Apache Solr backennd and a Blacklight search frontend
 ## Usage
 Run the following commands: 

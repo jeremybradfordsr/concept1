@@ -32,8 +32,6 @@ def ocr_space_url(url, overlay=False, api_key='helloworld', language='eng'):
                       )
     return r.content.decode()
 
-
-# Use examples:
 file = ocr_space_file(filename=sys.argv[1], overlay='false', language='eng')
 
 searchPDFURL = json.loads(file)
@@ -42,8 +40,9 @@ print(pdfURL)
 pdf = requests.get(pdfURL, allow_redirects=True)
 chunk_size  = 200
 pdfFilePath = sys.argv[1]
-pdfFileName = pdfFilePath[22:]
-with open('/var/www/html/stash/' + pdfFileName + '.pdf', 'wb') as fd:
+pdfFileName = os.path.basename(pdfFilePath)
+
+with open('/stash/' + pdfFileName + '.pdf', 'wb') as fd:
     for chunk in pdf.iter_content(chunk_size):
         fd.write(chunk)
 

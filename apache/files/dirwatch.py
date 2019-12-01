@@ -35,7 +35,7 @@ class Handler(FileSystemEventHandler):
         elif event.event_type == 'created':
             # Take any action here when a file is first created.
             print ("Received created event - %s." % event.src_path)
-            os.system("/usr/bin/python3 /var/www/html/ocrSpaceAPICall.py %s" % event.src_path)
+            os.system("/usr/bin/python3 /root/ocrSpaceAPICall.py %s" % event.src_path)
         elif event.event_type == 'modified':
             # Taken any action here when a file is modified.
             print ("Received modified event - %s." % event.src_path)

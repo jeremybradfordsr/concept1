@@ -5,28 +5,18 @@ services:
     build: ./apache/
     container_name: apache
     volumes:
-       - ./UNIXROOT/var/www/html:/var/www/html
+       - ./UNIXROOT/html:/var/www/html
+       - ./UNIXROOT/stash:/stash
     restart: always
     ports:
       - "80:80"
-#  solr:
-#    image: solr
-#    build: ./solr/
-#    container_name: solr
-#    volumes:
-#      - ./UNIXROOT/a:/opt/solr/a
-#      - ./UNIXROOT/var/www/html/stash/:/stash
-#      - ./UNIXROOT/var/solr/:/var/solr
-#    restart: always
-#    ports:
-#      - "8983:8983"
-#      - "8080:8080"
   blacklight:
    image: blacklight
    build: ./blacklight/
    container_name: blacklight
    volumes:
-      - ./UNIXROOT/srv:/tmp/solr-8.3.0/server/solr/blacklight-core
+      - ./UNIXROOT/blacklight-core:/tmp/solr-8.3.0/server/solr/blacklight-core
+      - ./UNIXROOT/stash:/stash
    restart: always
    ports:
       - "8983:8983"
@@ -36,27 +26,3 @@ services:
      nofile:
        soft: 65535
        hard: 70000
-
-
-#  elasticsearchweb:
-#    image: docker.elastic.co/elasticsearch/elasticsearch:7.4.2
-#    container_name: elasticsearchweb
-#    environment:
-#      - discovery.type=single-node
-#      - bootstrap.memory_lock=true
-#      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-#    ulimits:
-#      memlock:
-#        soft: -1
-#        hard: -1
-#    volumes:
-#       - ./UNIXROOT/var/www/html/stash/:/stash
-#    ports:
-#       - "9200:9200"
-  #     - "9300:9300"
-#  kibana:
-#    image: docker.elastic.co/kibana/kibana:7.4.2
-#    environment:
-#     ELASTICSEARCH_HOSTS: http://elasticsearchweb:9200
-#    ports:
-#       - "5601:5601"
